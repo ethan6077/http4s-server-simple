@@ -12,5 +12,4 @@ object HelloWorldService {
     case GET -> Root / "hello" / name =>
       Ok(s"Hello, $name.")
   }
-
 }
