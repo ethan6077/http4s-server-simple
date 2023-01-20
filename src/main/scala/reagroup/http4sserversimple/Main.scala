@@ -10,8 +10,9 @@ import reagroup.http4sserversimple.TweetService.tweetService
 
 
 object Main extends IOApp {
-  val services = tweetService <+> helloWorldService
-  val httpApp = Router("/" -> helloWorldService, "/api" -> services).orNotFound
+  val helloWorldServiceWithMiddleware = Middleware.transactionIdMiddle(helloWorldService)
+  val services = tweetService <+> helloWorldServiceWithMiddleware
+  val httpApp = Router("/" -> helloWorldServiceWithMiddleware, "/api" -> services).orNotFound
 
   def run(args: List[String]): IO[ExitCode] =
     EmberServerBuilder

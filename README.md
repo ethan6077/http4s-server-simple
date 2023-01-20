@@ -11,5 +11,5 @@ sbt run
 ## hello world request
 
 ```shell
-curl http://localhost:8080/hello/Pete
+curl -v http://localhost:8080/hello/Pete
 ```
